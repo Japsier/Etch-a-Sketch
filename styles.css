@@ -3,14 +3,16 @@
     flex-direction: column;
     height: 480px;
     width: 480px;
+    border: 5px solid blue;
+    border-radius: 10px;
 }
 .row {
     display: flex;
     flex-grow: 1;
 }
 .box {
-    border: 1px solid black;
     flex-grow: 1;
+    border: 1px solid black;
 }
 .colored {
     background-color: red;
