@@ -1,3 +1,38 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    align-items: center;
+}
+.header {
+    width: 100vh;
+    background-color: gray;
+    font-size: 50px;
+    border: 4px solid black;
+    border-radius: 30px;
+    text-align: center;
+    margin-top: 30px;
+}
+.center {
+    display: flex;
+}
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+.sizeButton {
+    display: flex;
+    height: 2em;
+    width: 4em;
+    font-size: 25px;
+    align-items: center;
+    justify-content: center;
+
+}
+
 #grid {
     display: flex;
     flex-direction: column;
@@ -14,9 +49,13 @@
     flex-grow: 1;
     border: 1px solid black;
 }
-.colored {
-    background-color: red;
-}
+
 button {
     font-size: 15px;
+}
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px 20px 40px;
+    width: 100vh;
 }

@@ -1,8 +1,13 @@
+let body = document.querySelector("body")
+let rightSide = document.querySelector(".right")
 let divRows = []
 let divBox = []
 let divGrid = document.querySelector("#grid")
-const clearButton = document.querySelector(".clearButton")
+let clearButton = null //document.querySelector(".clearButton")
 const sizeButton = document.querySelector(".sizeButton")
+
+let colorButton = null
+let colorChoice = "black"
 let palletSizeSet = false
 
 
@@ -32,20 +37,45 @@ function makeGrid(size) {
     palletSize = true
 }
 
+function makeButtons() {
+    if (colorButton === null) {
+        colorButton = document.createElement("input")
+        colorButton.setAttribute("type", "color")
+        rightSide.appendChild(colorButton)
+    }
+    sizeButton.innerText = "Size"
+    if (clearButton === null) {
+        clearButton = document.createElement("button")
+        clearButton.classList.add("clearButton")
+        clearButton.innerText = "Clear pallet"
+        rightSide.appendChild(clearButton)
+    }
+}
+
 
 sizeButton.addEventListener("click", () => {
     getPalletSize();
+    makeButtons();
 
     //adds colored-class to divs if hovered over by user
     document.querySelectorAll(".box").forEach(item => {
         item.addEventListener("mouseover", () => {
-            item.classList.add("colored");
+            //item.classList.add("colored");
+            item.style.backgroundColor = colorChoice
         })
     });
     //clears pallet 
     clearButton.addEventListener("click", () => {
         document.querySelectorAll(".box").forEach(item => {
-            item.classList.remove("colored");
+            item.style.backgroundColor = "white"
             });
     });
+
+    colorButton.addEventListener("change", (e) => {
+        colorChoice = e.target.value;
+    })
+
+
 });
+
+
