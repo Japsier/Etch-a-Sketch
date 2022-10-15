@@ -20,29 +20,50 @@ body {
 }
 .center {
     display: flex; 
-    gap: 120px;   
+    flex-direction: column;
+    gap: 40px; 
+    align-items: center;  
+    justify-content: center;
 }
-.left {
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+
+}
+
+.slideContainer {
+    width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
-}
-.sizeButton {
-    display: flex;
-    height: 2em;
-    width: 4em;
-    font-size: 35px;
-    align-items: center;
     justify-content: center;
-    background-color: white;
-    border: 3px solid black;
-    border-radius: 20px;
-    color: black
-
-
+    gap: 20px;
+    font-size: 24px;
 }
-.sizeButton:hover, button:hover{
+.slider {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 25px;
+    background: #222222;
+    outline: none;
+    opacity: 0.7;
+}
+.slider:hover {
+    opacity: 1;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: aqua;
+    cursor: pointer;
+}
+button:hover{
 background-color: #222222;
 color: yellow;
 border: 2px solid yellow;
@@ -52,11 +73,10 @@ border: 2px solid yellow;
     flex-direction: column;
     justify-content: center;
     gap: 40px;
-    padding-top: 110px;
     align-items: center;
 
 }
-input {
+.invisibleInput {
     visibility: hidden;
 }
 .colorContainer {
@@ -101,7 +121,8 @@ label.active {
     
 .footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 60px;
     padding: 20px 40px 20px 40px;
     width: 100vh;
 }

@@ -9,18 +9,21 @@
 </head>
 <body>
     <div class="header" class="rainbow">Etch-a-Sketch</div>
-    </div>
     <div class="center">
-        <div class="left">
-            <button class="sizeButton">Start</button>
+        <div class="slideContainer">
+            <input type="range" min="12" max="60" value="30" step="12" class="slider">
+            <div class="subText">Choose The Size</div>
+         </div>
+        <div class="content">
             <div id="grid"></div>
+            <div class="uiButtons"></div>
+            
         </div>
-
     </div>
 
-    </div>
     <div class="footer">
         <p>Mady by Japsier</p>
+        <p><=></p>
         <p>Project by The Odin Project</p>
     </div>
     <script src="js.js"></script>

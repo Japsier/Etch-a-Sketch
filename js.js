@@ -1,12 +1,14 @@
-let center = document.querySelector(".center")
-let header = document.querySelector(".header")
+const center = document.querySelector(".center")
+const header = document.querySelector(".header")
+const uiButtons = document.querySelector(".uiButtons")
+const subText = document.querySelector(".subText")
 let colorContainer = null
 let rightSide = null 
 let divRows = []
 let divBox = []
-let divGrid = document.querySelector("#grid")
+const divGrid = document.querySelector("#grid")
 let clearButton = null 
-const sizeButton = document.querySelector(".sizeButton")
+const sizeSlider = document.querySelector(".slider")
 let colorCollection = ["red", "purple", "orange", "yellow", "darkblue", "darkgreen", "pink", "lightgreen", "brown"]
 let rainbowMode = false
 let colorMode = false
@@ -19,12 +21,10 @@ let colorChoice = "black"
 let colorRainbow = null
 let colorEraser = null
 
-function getPalletSize() {
+function makePallet(size) {
     divGrid.innerHTML = ""
-    let palletSize = prompt("pick your size! \n Between 1-100");
-    while (palletSize <= 0 || palletSize >= 100) {
-        palletSize = prompt("Please pick between 1 and 100")
-    }
+    let palletSize = size
+    subText.innerText = palletSize + " x " + palletSize
     if (palletSize == 69) {
         alert("Nice!")
     }
@@ -51,7 +51,7 @@ function makeButtons() {
     if (rightSide === null) {
         rightSide = document.createElement("div")
         rightSide.classList.add("right")
-        center.appendChild(rightSide)
+        uiButtons.appendChild(rightSide)
     }
     if (colorContainer === null) {
         colorContainer = document.createElement("label")
@@ -61,9 +61,9 @@ function makeButtons() {
     if (colorButton === null) {
         colorButton = document.createElement("input")
         colorButton.setAttribute("type", "color")
+        colorButton.classList.add("invisibleInput")
         colorContainer.appendChild(colorButton)
     }
-    sizeButton.innerText = "Size"
     if (activateColorMode === null) {
         activateColorMode = document.createElement("button")
         activateColorMode.classList.add("ActivateColorMode")
@@ -131,8 +131,8 @@ function updateButtonStyle() {
     }
 }
 
-sizeButton.addEventListener("click", () => {
-    getPalletSize();
+sizeSlider.addEventListener("click", (e) => {
+    makePallet(e.target.value);
     makeButtons();
 
     //adds colored-class to divs if hovered over by user
