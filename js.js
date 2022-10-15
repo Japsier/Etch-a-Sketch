@@ -8,14 +8,18 @@ const sizeButton = document.querySelector(".sizeButton")
 
 let colorButton = null
 let colorChoice = "black"
-let palletSizeSet = false
-
+let colorMode = null
+let colorRainbow = null
+let colorEraser = null
 
 function getPalletSize() {
     divGrid.innerHTML = ""
     let palletSize = prompt("pick your size! \n Between 1-100");
     while (palletSize <= 0 || palletSize >= 100) {
         palletSize = prompt("Please pick between 1 and 100")
+    }
+    if (palletSize == 69) {
+        alert("Nice!")
     }
     makeGrid(palletSize)
 }
@@ -34,7 +38,6 @@ function makeGrid(size) {
             divBox[j].classList.add("box");
         }
     }
-    palletSize = true
 }
 
 function makeButtons() {
@@ -44,12 +47,31 @@ function makeButtons() {
         rightSide.appendChild(colorButton)
     }
     sizeButton.innerText = "Size"
+    if (colorMode === null) {
+        colorMode = document.createElement("button")
+        colorMode.classList.add("colorMode")
+        colorMode.innerText = "Color Mode"
+        rightSide.appendChild(colorMode)
+    }
+    if (colorRainbow === null) {
+        colorRainbow = document.createElement("button")
+        colorRainbow.classList.add("colorRainbow")
+        colorRainbow.innerText = "Rainbow"
+        rightSide.appendChild(colorRainbow)
+    }
+    if (colorEraser === null) {
+        colorEraser = document.createElement("button")
+        colorEraser.classList.add("colorEraser")
+        colorEraser.innerText = "Eraser"
+        rightSide.appendChild(colorEraser)
+    }
     if (clearButton === null) {
         clearButton = document.createElement("button")
         clearButton.classList.add("clearButton")
         clearButton.innerText = "Clear pallet"
         rightSide.appendChild(clearButton)
     }
+    
 }
 
 
