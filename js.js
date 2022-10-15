@@ -1,4 +1,5 @@
 let center = document.querySelector(".center")
+let header = document.querySelector(".header")
 let colorContainer = null
 let rightSide = null 
 let divRows = []
@@ -6,11 +7,12 @@ let divBox = []
 let divGrid = document.querySelector("#grid")
 let clearButton = null 
 const sizeButton = document.querySelector(".sizeButton")
-
+let colorCollection = ["red", "purple", "orange", "yellow", "darkblue", "darkgreen", "pink", "lightgreen", "brown"]
 let rainbowMode = false
 let colorMode = false
 let eraserMode = false
 
+let activateColorMode = null
 let colorButton = null
 let colorChoice = "black"
 //let colorMode = null
@@ -62,6 +64,12 @@ function makeButtons() {
         colorContainer.appendChild(colorButton)
     }
     sizeButton.innerText = "Size"
+    if (activateColorMode === null) {
+        activateColorMode = document.createElement("button")
+        activateColorMode.classList.add("ActivateColorMode")
+        activateColorMode.innerText = "Color Mode"
+        rightSide.appendChild(activateColorMode)
+    }
     if (colorRainbow === null) {
         colorRainbow = document.createElement("button")
         colorRainbow.classList.add("colorRainbow")
@@ -104,17 +112,24 @@ function updateButtonStyle() {
     if (colorMode == true) {
         colorRainbow.classList.remove("active");
         colorEraser.classList.remove("active");
-        colorContainer.classList.add("active")
+        activateColorMode.classList.add("active")
+        header.style.backgroundColor = colorChoice
+        header.style.color = "white"
     }
     if (eraserMode == true) {
         colorRainbow.classList.remove("active");
         colorEraser.classList.add("active");
-        colorContainer.classList.remove("active")
+        activateColorMode.classList.remove("active")
+        header.style.backgroundColor = "white"
+        header.style.color = "black"
     }
     if (rainbowMode == true) {
         colorRainbow.classList.add("active");
         colorEraser.classList.remove("active");
-        colorContainer.classList.remove("active")
+        activateColorMode.classList.remove("active")
+        let tempRandCol = colorCollection[(Math.floor(Math.random() * 10))]
+        header.style.color = tempRandCol
+        header.style.backgroundColor = tempRandCol
     }
 }
 
@@ -145,7 +160,7 @@ sizeButton.addEventListener("click", () => {
         document.querySelectorAll(".box").forEach(item => {
             item.style.backgroundColor = "white"
             });
-        setActiveButton("colorMode")
+        //setActiveButton("colorMode")
         updateButtonStyle()
     });
 
@@ -163,6 +178,11 @@ sizeButton.addEventListener("click", () => {
 
     colorRainbow.addEventListener("click", () => {
         setActiveButton("rainbowMode")
+        updateButtonStyle()
+    })
+
+    activateColorMode.addEventListener("click", () => {
+        setActiveButton("colorMode")
         updateButtonStyle()
     })
 

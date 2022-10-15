@@ -51,8 +51,9 @@ border: 2px solid yellow;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 80px;
+    gap: 40px;
     padding-top: 110px;
+    align-items: center;
 
 }
 input {
