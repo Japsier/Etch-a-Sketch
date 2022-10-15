@@ -1,4 +1,5 @@
 let center = document.querySelector(".center")
+let colorContainer = null
 let rightSide = null //document.querySelector(".right")
 let divRows = []
 let divBox = []
@@ -8,7 +9,7 @@ const sizeButton = document.querySelector(".sizeButton")
 
 let colorButton = null
 let colorChoice = "black"
-let colorMode = null
+//let colorMode = null
 let colorRainbow = null
 let colorEraser = null
 
@@ -46,18 +47,23 @@ function makeButtons() {
         rightSide.classList.add("right")
         center.appendChild(rightSide)
     }
+    if (colorContainer === null) {
+        colorContainer = document.createElement("label")
+        colorContainer.classList.add("colorContainer")
+        rightSide.appendChild(colorContainer)
+    }
     if (colorButton === null) {
         colorButton = document.createElement("input")
         colorButton.setAttribute("type", "color")
-        rightSide.appendChild(colorButton)
+        colorContainer.appendChild(colorButton)
     }
     sizeButton.innerText = "Size"
-    if (colorMode === null) {
-        colorMode = document.createElement("button")
-        colorMode.classList.add("colorMode")
-        colorMode.innerText = "Color Mode"
-        rightSide.appendChild(colorMode)
-    }
+   // if (colorMode === null) {
+     //   colorMode = document.createElement("button")
+     //   colorMode.classList.add("colorMode")
+     //   colorMode.innerText = "Color Mode"
+     //   rightSide.appendChild(colorMode)
+    //}
     if (colorRainbow === null) {
         colorRainbow = document.createElement("button")
         colorRainbow.classList.add("colorRainbow")
@@ -100,6 +106,11 @@ sizeButton.addEventListener("click", () => {
 
     colorButton.addEventListener("change", (e) => {
         colorChoice = e.target.value;
+        colorContainer.style.backgroundColor = colorChoice
+    })
+
+    colorEraser.addEventListener("click", () => {
+        colorChoice = "white"
     })
 
 

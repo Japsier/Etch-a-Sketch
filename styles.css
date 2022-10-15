@@ -4,6 +4,7 @@ body {
     height: 100vh;
     justify-content: space-between;
     align-items: center;
+    background-color: #373737;
 }
 .header {
     width: 100vh;
@@ -28,17 +29,38 @@ body {
     display: flex;
     height: 2em;
     width: 4em;
-    font-size: 25px;
+    font-size: 35px;
     align-items: center;
     justify-content: center;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 20px;
+    color: black
+
 
 }
-
+.sizeButton:hover{
+background-color: #222222;
+color: white;
+border: 0px;
+}
 .right {
     display: flex;
     flex-direction: column;
-    flex-shrink: 1;
+    justify-content: center;
+    gap: 70px;
+    padding-top: 110px;
 
+}
+input {
+    visibility: hidden;
+}
+.colorContainer {
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    background-color: black;
+    border: 2px solid black;
 }
 
 #grid {
@@ -46,8 +68,7 @@ body {
     flex-direction: column;
     height: 480px;
     width: 480px;
-    border: 5px solid blue;
-    border-radius: 10px;
+    background-color: #828385;
 }
 .row {
     display: flex;
@@ -55,7 +76,7 @@ body {
 }
 .box {
     flex-grow: 1;
-    border: 1px solid black;
+    background-color: white;
 }
 
 button {
