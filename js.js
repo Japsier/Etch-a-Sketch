@@ -1,12 +1,15 @@
 let center = document.querySelector(".center")
 let colorContainer = null
-let rightSide = null //document.querySelector(".right")
+let rightSide = null 
 let divRows = []
 let divBox = []
 let divGrid = document.querySelector("#grid")
-let clearButton = null //document.querySelector(".clearButton")
+let clearButton = null 
 const sizeButton = document.querySelector(".sizeButton")
+
 let rainbowMode = false
+let colorMode = false
+let eraserMode = false
 
 let colorButton = null
 let colorChoice = "black"
@@ -59,12 +62,6 @@ function makeButtons() {
         colorContainer.appendChild(colorButton)
     }
     sizeButton.innerText = "Size"
-   // if (colorMode === null) {
-     //   colorMode = document.createElement("button")
-     //   colorMode.classList.add("colorMode")
-     //   colorMode.innerText = "Color Mode"
-     //   rightSide.appendChild(colorMode)
-    //}
     if (colorRainbow === null) {
         colorRainbow = document.createElement("button")
         colorRainbow.classList.add("colorRainbow")
@@ -80,12 +77,46 @@ function makeButtons() {
     if (clearButton === null) {
         clearButton = document.createElement("button")
         clearButton.classList.add("clearButton")
-        clearButton.innerText = "Clear pallet"
+        clearButton.innerText = "Clear Pallet"
         rightSide.appendChild(clearButton)
     }
     
 }
+function setActiveButton (Mode) {
+    if (Mode == "colorMode") {
+        colorMode = true
+        rainbowMode = false
+        eraserMode = false
+    }
+    if (Mode == "rainbowMode") {
+        colorMode = false
+        rainbowMode = true
+        eraserMode = false
+    }
+    if (Mode == "eraserMode") {
+        colorMode = false
+        rainbowMode = false
+        eraserMode = true
+    }
 
+}
+function updateButtonStyle() {
+    if (colorMode == true) {
+        colorRainbow.classList.remove("active");
+        colorEraser.classList.remove("active");
+        colorContainer.classList.add("active")
+    }
+    if (eraserMode == true) {
+        colorRainbow.classList.remove("active");
+        colorEraser.classList.add("active");
+        colorContainer.classList.remove("active")
+    }
+    if (rainbowMode == true) {
+        colorRainbow.classList.add("active");
+        colorEraser.classList.remove("active");
+        colorContainer.classList.remove("active")
+    }
+}
 
 sizeButton.addEventListener("click", () => {
     getPalletSize();
@@ -95,15 +126,17 @@ sizeButton.addEventListener("click", () => {
     document.querySelectorAll(".box").forEach(item => {
         item.addEventListener("mouseover", () => {
             //item.classList.add("colored");
-            if (rainbowMode === false) {
-                item.style.backgroundColor = colorChoice
+            if (eraserMode === true) {
+                item.style.backgroundColor = "white"
             }
-            else {
+            else if (rainbowMode === true) {
                     let red = Math.floor(Math.random() * 256);
                     let green = Math.floor(Math.random() * 256);
                     let blue = Math.floor(Math.random() * 256);
                     item.style.backgroundColor = "rgb(" + red + "," + blue + "," + green + ")"
                     console.log(item.style.backgroundColor)
+            } else {
+                item.style.backgroundColor = colorChoice
             }
         })
     });
@@ -112,25 +145,26 @@ sizeButton.addEventListener("click", () => {
         document.querySelectorAll(".box").forEach(item => {
             item.style.backgroundColor = "white"
             });
-        rainbowMode = false
+        setActiveButton("colorMode")
+        updateButtonStyle()
     });
 
-    colorButton.addEventListener("change", (e) => {
-        rainbowMode = false;
+    colorButton.addEventListener("input", (e) => {
+        setActiveButton("colorMode")
+        updateButtonStyle()
         colorChoice = e.target.value;
         colorContainer.style.backgroundColor = colorChoice
     })
 
     colorEraser.addEventListener("click", () => {
-        rainbowMode = false
-        colorChoice = "white"
+        setActiveButton("eraserMode")
+        updateButtonStyle()
     })
 
     colorRainbow.addEventListener("click", () => {
-        rainbowMode = true;
-        console.log(rainbowMode)
+        setActiveButton("rainbowMode")
+        updateButtonStyle()
     })
-
 
 });
 
