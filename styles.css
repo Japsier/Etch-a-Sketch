@@ -60,13 +60,13 @@ body {
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    background-color: aqua;
+    background-color:black;
     cursor: pointer;
 }
 button:hover{
 background-color: #222222;
 color: yellow;
-border: 2px solid yellow;
+border: 2px solid yellow
 }
 .right {
     display: flex;
