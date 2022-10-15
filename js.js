@@ -1,5 +1,5 @@
-let body = document.querySelector("body")
-let rightSide = document.querySelector(".right")
+let center = document.querySelector(".center")
+let rightSide = null //document.querySelector(".right")
 let divRows = []
 let divBox = []
 let divGrid = document.querySelector("#grid")
@@ -41,6 +41,11 @@ function makeGrid(size) {
 }
 
 function makeButtons() {
+    if (rightSide === null) {
+        rightSide = document.createElement("div")
+        rightSide.classList.add("right")
+        center.appendChild(rightSide)
+    }
     if (colorButton === null) {
         colorButton = document.createElement("input")
         colorButton.setAttribute("type", "color")
