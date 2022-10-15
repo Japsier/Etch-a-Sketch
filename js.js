@@ -127,9 +127,7 @@ function updateButtonStyle() {
         colorRainbow.classList.add("active");
         colorEraser.classList.remove("active");
         activateColorMode.classList.remove("active")
-        let tempRandCol = colorCollection[(Math.floor(Math.random() * 10))]
-        header.style.color = tempRandCol
-        header.style.backgroundColor = tempRandCol
+        header.style.backgroundColor = "red"
     }
 }
 
@@ -148,8 +146,9 @@ sizeButton.addEventListener("click", () => {
                     let red = Math.floor(Math.random() * 256);
                     let green = Math.floor(Math.random() * 256);
                     let blue = Math.floor(Math.random() * 256);
-                    item.style.backgroundColor = "rgb(" + red + "," + blue + "," + green + ")"
-                    console.log(item.style.backgroundColor)
+                    let rainbowRGB = "rgb(" + red + "," + blue + "," + green + ")"
+                    item.style.backgroundColor = rainbowRGB
+                    header.style.backgroundColor = rainbowRGB
             } else {
                 item.style.backgroundColor = colorChoice
             }
