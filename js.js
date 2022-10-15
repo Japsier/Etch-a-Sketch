@@ -6,6 +6,7 @@ let divBox = []
 let divGrid = document.querySelector("#grid")
 let clearButton = null //document.querySelector(".clearButton")
 const sizeButton = document.querySelector(".sizeButton")
+let rainbowMode = false
 
 let colorButton = null
 let colorChoice = "black"
@@ -94,7 +95,16 @@ sizeButton.addEventListener("click", () => {
     document.querySelectorAll(".box").forEach(item => {
         item.addEventListener("mouseover", () => {
             //item.classList.add("colored");
-            item.style.backgroundColor = colorChoice
+            if (rainbowMode === false) {
+                item.style.backgroundColor = colorChoice
+            }
+            else {
+                    let red = Math.floor(Math.random() * 256);
+                    let green = Math.floor(Math.random() * 256);
+                    let blue = Math.floor(Math.random() * 256);
+                    item.style.backgroundColor = "rgb(" + red + "," + blue + "," + green + ")"
+                    console.log(item.style.backgroundColor)
+            }
         })
     });
     //clears pallet 
@@ -102,15 +112,23 @@ sizeButton.addEventListener("click", () => {
         document.querySelectorAll(".box").forEach(item => {
             item.style.backgroundColor = "white"
             });
+        rainbowMode = false
     });
 
     colorButton.addEventListener("change", (e) => {
+        rainbowMode = false;
         colorChoice = e.target.value;
         colorContainer.style.backgroundColor = colorChoice
     })
 
     colorEraser.addEventListener("click", () => {
+        rainbowMode = false
         colorChoice = "white"
+    })
+
+    colorRainbow.addEventListener("click", () => {
+        rainbowMode = true;
+        console.log(rainbowMode)
     })
 
 
