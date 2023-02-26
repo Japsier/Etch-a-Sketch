@@ -11,8 +11,8 @@
     <div class="header" class="rainbow">Etch-a-Sketch</div>
     <div class="center">
         <div class="slideContainer">
-            <input type="range" min="12" max="60" value="30" step="12" class="slider">
-            <div class="subText">Choose The Size</div>
+            <input type="range" min="12" max="60" value="12" step="1" onInput ="updateTextInput(this.value)" class="slider">
+            <div class="subText">12 x 12</div>
          </div>
         <div class="content">
             <div id="grid"></div>

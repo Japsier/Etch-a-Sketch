@@ -21,13 +21,9 @@ let colorChoice = "black"
 let colorRainbow = null
 let colorEraser = null
 
-function makePallet(size) {
+function makePallet(value) {
     divGrid.innerHTML = ""
-    let palletSize = size
-    subText.innerText = palletSize + " x " + palletSize
-    if (palletSize == 69) {
-        alert("Nice!")
-    }
+    let palletSize = value
     makeGrid(palletSize)
 }
 
@@ -131,7 +127,7 @@ function updateButtonStyle() {
     }
 }
 
-sizeSlider.addEventListener("click", (e) => {
+function buildApp (e) {
     makePallet(e.target.value);
     makeButtons();
 
@@ -184,7 +180,13 @@ sizeSlider.addEventListener("click", (e) => {
         setActiveButton("colorMode")
         updateButtonStyle()
     })
+}
+sizeSlider.addEventListener("click", (e) => buildApp(e))
 
-});
+sizeSlider.addEventListener("touchend", (e) => buildApp(e))
+
+function updateTextInput (value) {
+    subText.innerText = value + " x " + value
+}
 
 
