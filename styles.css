@@ -198,5 +198,8 @@ label.active {
         height: 300px;
         width: 300px;
     }
+    .footer {
+        padding: 10px;
+    }
 }
  

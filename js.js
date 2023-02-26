@@ -17,9 +17,10 @@ let eraserMode = false
 let activateColorMode = null
 let colorButton = null
 let colorChoice = "black"
-//let colorMode = null
 let colorRainbow = null
 let colorEraser = null
+
+let mouseDown = false
 
 function makePallet(value) {
     divGrid.innerHTML = ""
@@ -63,6 +64,7 @@ function makeButtons() {
     if (activateColorMode === null) {
         activateColorMode = document.createElement("button")
         activateColorMode.classList.add("ActivateColorMode")
+        activateColorMode.classList.add("active")
         activateColorMode.innerText = "Color Mode"
         rightSide.appendChild(activateColorMode)
     }
@@ -134,28 +136,52 @@ function buildApp (e) {
     //adds colored-class to divs if hovered over by user
     document.querySelectorAll(".box").forEach(item => {
         item.addEventListener("mouseover", () => {
-            //item.classList.add("colored");
+            if (mouseDown) {
+                if (eraserMode === true) {
+                    item.style.backgroundColor = "white"
+                }
+                else if (rainbowMode === true) {
+                        let red = Math.floor(Math.random() * 256);
+                        let green = Math.floor(Math.random() * 256);
+                        let blue = Math.floor(Math.random() * 256);
+                        let rainbowRGB = "rgb(" + red + "," + blue + "," + green + ")"
+                        item.style.backgroundColor = rainbowRGB
+                        header.style.backgroundColor = rainbowRGB
+                } else {
+                    item.style.backgroundColor = colorChoice
+                }
+            }
+
+        })
+    });
+    //for mobile users
+    divGrid.addEventListener("touchmove", (event) => {
+        var xcoord = event.touches? event.touches[0].pageX : event.pageX;
+        var ycoord = event.touches? event.touches[0].pageY : event.pageY;
+        var targetElement = document.elementFromPoint(xcoord, ycoord);
+        if (targetElement.parentNode.parentNode.id === "grid") {
             if (eraserMode === true) {
-                item.style.backgroundColor = "white"
+                targetElement.style.backgroundColor = "white"
             }
             else if (rainbowMode === true) {
                     let red = Math.floor(Math.random() * 256);
                     let green = Math.floor(Math.random() * 256);
                     let blue = Math.floor(Math.random() * 256);
                     let rainbowRGB = "rgb(" + red + "," + blue + "," + green + ")"
-                    item.style.backgroundColor = rainbowRGB
+                    targetElement.style.backgroundColor = rainbowRGB
                     header.style.backgroundColor = rainbowRGB
             } else {
-                item.style.backgroundColor = colorChoice
+                targetElement.style.backgroundColor = colorChoice
             }
-        })
-    });
+        } 
+        
+
+    })
     //clears pallet 
     clearButton.addEventListener("click", () => {
         document.querySelectorAll(".box").forEach(item => {
             item.style.backgroundColor = "white"
             });
-        //setActiveButton("colorMode")
         updateButtonStyle()
     });
 
@@ -187,6 +213,12 @@ sizeSlider.addEventListener("touchend", (e) => buildApp(e))
 
 function updateTextInput (value) {
     subText.innerText = value + " x " + value
+}
+document.body.onmousedown = function () {
+    mouseDown = true
+}
+document.body.onmouseup = function () {
+    mouseDown = false
 }
 
 
